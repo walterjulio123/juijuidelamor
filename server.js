@@ -20,6 +20,16 @@ app.get('/',function(req,res){
 var server = app.listen(port, function () {
     console.log('node server is just fine! and running on port - ' + port);
 });
+io.on('connection', function(socket) {  
+  console.log('Alguien se ha conectado con Sockets');
+  socket.emit('messages', messages);
+
+  socket.on('new-message', function(data) {
+    messages.push(data);
+
+    io.sockets.emit('messages', messages);
+  });
+});
 /*
 app.get('/', function (req, res) {
     res.send("Juijui del amorrrr y la felicidaaaaad en juijuidelamor V3.1!");
