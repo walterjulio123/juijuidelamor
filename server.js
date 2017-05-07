@@ -14,11 +14,17 @@ app.get('/',function(req,res){
 	res.sendFile(__dirname + '/index.html');
 });
 */
-
-app.get('/', function (req, res) {
-    res.send("Juijui del amorrrr y la felicidaaaaad en juijuidelamor V3.1!");
+app.get('/',function(req,res){
+	res.sendFile(__dirname + '/index.html');
 });
-
 var server = app.listen(port, function () {
     console.log('node server is just fine! and running on port - ' + port);
 });
+/*
+app.get('/', function (req, res) {
+    res.send("Juijui del amorrrr y la felicidaaaaad en juijuidelamor V3.1!");
+});
+var server = app.listen(port, function () {
+    console.log('node server is just fine! and running on port - ' + port);
+});
+*/
