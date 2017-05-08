@@ -14,7 +14,6 @@ var socket = io.connect();
 
 socket.on('messages', function(data) {  
   console.log(data);
-  //render(data);
 });
 socket.on('update-status', function(data) {  
   $(document).off('change');
@@ -22,10 +21,8 @@ socket.on('update-status', function(data) {
    var updateEstado = data==true?true:false;
   $('#chk01'). prop('checked', updateEstado).change();
   $(document).on('change', '.checkbox', function() {
-    //var valor = this.checked;
     newStatus(this);
   });
-  //$('.checkbox').on('change',newStatus(this.checked));
 });
 function addMessage(e) {  
   var message = {
@@ -36,11 +33,9 @@ function addMessage(e) {
   socket.emit('new-message', message);
   return false;
 };
-function newStatus(e) {  
-//  alert('dsds'); 
-  //var valor = this.checked;
-  //socket.emit('new-status', valor);  
+function newStatus(e) {   
   var estado = e.checked;
-  socket.emit('new-status', estado);  
+  //socket.emit('new-status', estado);  
+  //Mensaje al Rasperrito
+  socket.emit('server-message', estado); 
 }
-//$('.checkbox').on('change',newStatus(this.checked));

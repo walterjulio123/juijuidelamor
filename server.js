@@ -30,8 +30,8 @@ io.on('connection', function(socket) {
     console.log(data);
     io.sockets.emit('update-status', data);
   });  
-  socket.on('control-connect', function(data) {
-    console.log('control-connect');
+  socket.on('control-message', function(data) {
+    console.log('control-message');
   });    
 });
 
