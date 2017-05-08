@@ -28,7 +28,9 @@ io.on('connection', function(socket) {
   });
   socket.on('new-status', function(data) {
     console.log(data);
-    io.sockets.emit('update-status', data);
+    io.sockets.emit('update-status', data);    
+      //Mensaje al Rasperrito
+    io.sockets.emit('server-message', estado); 
   });  
   socket.on('control-message', function(data) {
     console.log('control-message');

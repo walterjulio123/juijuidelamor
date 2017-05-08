@@ -15,10 +15,11 @@ var socket = io.connect();
 socket.on('messages', function(data) {  
   console.log(data);
 });
+
 socket.on('update-status', function(data) {  
   $(document).off('change');
   console.log(data);
-   var updateEstado = data==true?true:false;
+   var updateEstado = (data==true?true:false);
   $('#chk01'). prop('checked', updateEstado).change();
   $(document).on('change', '.checkbox', function() {
     newStatus(this);
@@ -35,7 +36,5 @@ function addMessage(e) {
 };
 function newStatus(e) {   
   var estado = e.checked;
-  //socket.emit('new-status', estado);  
-  //Mensaje al Rasperrito
-  socket.emit('server-message', estado); 
+  socket.emit('new-status', estado);  
 }
