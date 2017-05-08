@@ -2,40 +2,36 @@
 var express = require('express');
 var app = express();
 //var server = require('http').createserver(app);  
+var server = require('http').Server(app); 
 var io = require('socket.io').listen(server);
 var port = process.env.PORT || 3000;
 var users = [];
 var connections = [];
-/*
-server.listen(process.env.PORT || 3000);
-console.log('Server is running...');
+var messages = [{  
+  //id: 1,
+  text: "Hola soy un mensaje",
+  author: "Carlos Azaustre"
+}];
 
-app.get('/',function(req,res){
-	res.sendFile(__dirname + '/index.html');
-});
-*/
 app.use(express.static('public'));
 app.get('/',function(req,res){
 	res.sendFile(__dirname + '/index.html');
 });
-var server = app.listen(port, function () {
-    console.log('node server is just fine! and running on port - ' + port);
-});
+
 io.on('connection', function(socket) {  
   console.log('Alguien se ha conectado con Sockets');
   socket.emit('messages', messages);
 
   socket.on('new-message', function(data) {
     messages.push(data);
-
     io.sockets.emit('messages', messages);
   });
+  socket.on('new-status', function(data) {
+    console.log(data);
+    io.sockets.emit('update-status', data);
+  });  
 });
-/*
-app.get('/', function (req, res) {
-    res.send("Juijui del amorrrr y la felicidaaaaad en juijuidelamor V3.1!");
+
+server.listen(port, function() {  
+  console.log("Servidor corriendo en " + port);
 });
-var server = app.listen(port, function () {
-    console.log('node server is just fine! and running on port - ' + port);
-});
-*/

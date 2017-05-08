@@ -9,15 +9,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
 </head>
 <body>  
   <h1>My App</h1>
   <div id="messages"></div>
+
   <br/>
   <form onsubmit="return addMessage(this)">
+  <div class="container">
+    <input id="chk01" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" class="checkbox">
+    <input id="chk02" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">    
     <input type="text" id="username" placeholder="Tu Nombre" >
     <input type="text" id="texto" placeholder="Cuéntanos algo...">
-    <input type="submit" value="Enviar!">
+    <input type="submit" value="Enviar!">    
+  </div>
+
   </form>
 </body>  
 </html> 
