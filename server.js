@@ -19,10 +19,9 @@ app.get('/',function(req,res){
 });
 
 io.on('connection', function(socket) {  
-
   console.log('Alguien se ha conectado con Sockets');
-  socket.emit('messages', messages);
-
+  //socket.emit('messages', messages);
+  io.sockets.emit('getControlStatus', 'nada');
   socket.on('new-message', function(data) {
     messages.push(data);
     io.sockets.emit('messages', messages);
@@ -34,12 +33,18 @@ io.on('connection', function(socket) {
     //Mensaje al Rasperrito
     io.sockets.emit('server-message', data); 
   });  
-  //Mensaje del Rasperrito
+  //Mensaje del Rasperrito 1
   socket.on('control-message', function(data) {
     console.log('control-message: '+ data);
     //Mensaje a clientes
     io.sockets.emit('update-status', data);    
   });   
+  //Mensaje del Rasperrito 2
+  socket.on('responseControlStatus', function(data) {
+    console.log('responseControlStatus: '+ data);
+    //Mensaje a clientes
+    io.sockets.emit('update-status', data);    
+  });    
 
 });
 
