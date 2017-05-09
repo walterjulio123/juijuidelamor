@@ -19,6 +19,7 @@ app.get('/',function(req,res){
 });
 
 io.on('connection', function(socket) {  
+
   console.log('Alguien se ha conectado con Sockets');
   socket.emit('messages', messages);
 
@@ -26,15 +27,18 @@ io.on('connection', function(socket) {
     messages.push(data);
     io.sockets.emit('messages', messages);
   });
+
   socket.on('new-status', function(data) {
     console.log(data);
     io.sockets.emit('update-status', data);    
       //Mensaje al Rasperrito
     io.sockets.emit('server-message', data); 
   });  
+
   socket.on('control-message', function(data) {
-    console.log('control-message');
-  });    
+    console.log('control-message: '+ data);  
+  });   
+
 });
 
 server.listen(port, function() {  
