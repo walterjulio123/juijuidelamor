@@ -19,7 +19,7 @@ socket.on('messages', function(data) {
 });
 
 socket.on('update-status', function(data) {  
-  $('#panelito').removeClass('checked');
+  $('#panelito').removeClass('hidden');
   $(document).off('change');
   console.log(data);
    var updateEstado = (data==true?true:false);
