@@ -1,6 +1,7 @@
 //var socket = io.connect('http://192.168.1.39:3000', { 'forceNew': true });
 $( document ).ready(function() {
   //$('.checkbox').on('change',newStatus());
+  /*
   $(document).on('change', '.checkbox', function() {
     //event.preventDefault();
     //alert(this.checked);
@@ -8,6 +9,7 @@ $( document ).ready(function() {
     //newStatus(valor);
     newStatus(this);
   });
+  */
 });
 
 var socket = io.connect();
@@ -17,6 +19,7 @@ socket.on('messages', function(data) {
 });
 
 socket.on('update-status', function(data) {  
+  $('#panelito').removeClass('checked');
   $(document).off('change');
   console.log(data);
    var updateEstado = (data==true?true:false);
