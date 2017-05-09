@@ -30,13 +30,15 @@ io.on('connection', function(socket) {
 
   socket.on('new-status', function(data) {
     console.log(data);
-    io.sockets.emit('update-status', data);    
-      //Mensaje al Rasperrito
+    //io.sockets.emit('update-status', data);    
+    //Mensaje al Rasperrito
     io.sockets.emit('server-message', data); 
   });  
-
+  //Mensaje del Rasperrito
   socket.on('control-message', function(data) {
-    console.log('control-message: '+ data);  
+    console.log('control-message: '+ data);
+    //Mensaje a clientes
+    io.sockets.emit('update-status', data);    
   });   
 
 });
