@@ -20,13 +20,14 @@ app.get('/',function(req,res){
 
 io.on('connection', function(socket) {  
   console.log('Alguien se ha conectado con Sockets');
-  //socket.emit('messages', messages);
   io.sockets.emit('getControlStatus', 'nada');
+  /*
+  socket.emit('messages', messages);
   socket.on('new-message', function(data) {
     messages.push(data);
     io.sockets.emit('messages', messages);
   });
-
+*/
   socket.on('new-status', function(data) {
     console.log(data);
     //io.sockets.emit('update-status', data);    
